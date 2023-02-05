@@ -44,6 +44,7 @@ async def ping(ctx):
 # Events
 @bot.event
 async def on_ready():
+    global dev_text_channel
     print(f"{bot.user} has connected to Discord!")
     dev_text_channel = await bot.fetch_channel(dev_text_channel_id)
 

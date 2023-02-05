@@ -6,13 +6,19 @@ Move the user to a set channel, the bot will start to play audio and kick them f
 
 ## Running
 
-TBD
+I recommend to run it in a docker container. Nativly in wsl might give you unextected errors with audio playback.
 
-### Docker
+### Docker (or podman)
 
+Use the assistant script.
+```bash
+bash scripts/start-dockerized.sh
+```
+
+#### Docker - build and run manually
 ```bash
 # Build
-docker build -t bedtime-bot .
+docker build --no-cache -t bedtime-bot .
 # Run
 docker run -d bedtime-bot:latest
 ```
