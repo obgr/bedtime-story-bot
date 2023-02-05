@@ -11,6 +11,8 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 voice_channel_id = int(os.getenv("VOICE_CHANNEL"))
 ignored_bot_id = int(os.getenv("IGNORED_USER_ID"))
+dev_text_channel_id = int(os.getenv("DEV_TEXT_CHANNEL_ID"))
+dev_text_channel = None
 directory = "app/audio"
 file_types = ('aac', '*.flac', '*.mp3', '*.m4a', '*.opus',
               '*.vorbis', '*.wav')  # the tuple of file types
@@ -43,6 +45,7 @@ async def ping(ctx):
 @bot.event
 async def on_ready():
     print(f"{bot.user} has connected to Discord!")
+    dev_text_channel = await bot.fetch_channel(dev_text_channel_id)
 
 
 @bot.event
@@ -71,6 +74,7 @@ async def on_voice_state_update(member, before, after):
         # Random sound
         random_audio_file = random.choice(audio_files_grabbed)
         print(f"Random audio file is {random_audio_file}")
+        await dev_text_channel.send(content=f"Playing {random_audio_file} for little {member.name}.")
         await connect_and_play_sound(after.channel, random_audio_file, member)
 
 
