@@ -53,3 +53,8 @@ Supports: .aac, .flac, .mp3', .m4a, .opus, .vorbis, .wav
 
 Put audio files in the bedtime-story-bot/audio directory. This directory will be bind-mounted into /bot/app/audio inside the container.
 
+## Known issues
+
+The bot only handles one user.
+If another user joins the channel after audio have started playing, the newly connected user will not hear any playback.
+If a user already is present in the channel prior to bot joining, audio will be played for the user(s).
