@@ -66,11 +66,14 @@ $CONTAINERRUNTIME rmi ${CONTAINERNAME}:${IMAGEVERSION}
 
 # Build Image
 echo "Building image"
-$CONTAINERRUNTIME build . --no-cache -t ${CONTAINERNAME}:${IMAGEVERSION}
+$CONTAINERRUNTIME build . -t ${CONTAINERNAME}:${IMAGEVERSION}
+# $CONTAINERRUNTIME build . --no-cache -t ${CONTAINERNAME}:${IMAGEVERSION}
 
 # Run Image
 echo "Run image"
 $CONTAINERRUNTIME run -d \
+ --mount type=bind,source=$PWD/app/.env,target=/eon-bot/app/.env,readonly \
+ --mount type=bind,source=$PWD/audio,target=/bot/app/audio/,readonly \
  --restart unless-stopped \
  --name ${CONTAINERNAME} \
  ${CONTAINERNAME}:${IMAGEVERSION}

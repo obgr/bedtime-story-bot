@@ -20,7 +20,12 @@ bash scripts/start-dockerized.sh
 # Build
 docker build --no-cache -t bedtime-bot .
 # Run
-docker run -d bedtime-bot:latest
+docker run -d \
+ --mount type=bind,source=$PWD/app/.env,target=/eon-bot/app/.env,readonly \
+ --mount type=bind,source=$PWD/audio,target=/bot/app/audio/,readonly \
+ --restart unless-stopped \
+ --name bedtime-bot \
+ bedtime-bot:latest
 ```
 
 ### Native - Linux
@@ -46,6 +51,5 @@ Only tested with mp3 files.
 
 Supports: .aac, .flac, .mp3', .m4a, .opus, .vorbis, .wav
 
-Put audio files in the app/audio directory.
-
+Put audio files in the bedtime-bot/audio directory. This directory will be bind-mounted into /bot/app/audio inside the container.
 

@@ -34,7 +34,6 @@ for files in file_types:
     audio_files_grabbed.extend(glob.glob(files))
 print(f"Audio files: {audio_files_grabbed}")
 
-
 # Commands
 @bot.slash_command(description="Sends the bot's latency.")
 async def ping(ctx):
@@ -45,9 +44,10 @@ async def ping(ctx):
 @bot.event
 async def on_ready():
     global dev_text_channel
-    print(f"{bot.user} has connected to Discord!")
     dev_text_channel = await bot.fetch_channel(dev_text_channel_id)
-
+    print(f"{bot.user} has connected to Discord!")
+    await dev_text_channel.send(content=f"No fear, {bot.user} is here!")
+    await dev_text_channel.send(content=f"Audio files: {audio_files_grabbed}")
 
 @bot.event
 # when someone joins voice
