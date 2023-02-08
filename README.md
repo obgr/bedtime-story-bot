@@ -51,5 +51,5 @@ Only tested with mp3 files.
 
 Supports: .aac, .flac, .mp3', .m4a, .opus, .vorbis, .wav
 
-Put audio files in the bedtime-bot/audio directory. This directory will be bind-mounted into /bot/app/audio inside the container.
+Put audio files in the bedtime-story-bot/audio directory. This directory will be bind-mounted into /bot/app/audio inside the container.
 
